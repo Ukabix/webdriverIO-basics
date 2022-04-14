@@ -31,7 +31,6 @@ describe('Ecommerce App', async () => {
     await console.log(
       await $('.alert-danger').getText()
     );
-    await browser.pause(3000);
-
+    await expect($("p")).toHaveTextContaining("username is rahulshettyacademy and Password is learning");
   });
 });
