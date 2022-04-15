@@ -1,5 +1,6 @@
 describe('Ecommerce App', async () => {
-  it('Login fail page', async () => {
+  // xit disables test
+  xit('Login fail page', async () => {
     // open browser
     await browser.url(
       'https://www.rahulshettyacademy.com/loginpagePractise/'
@@ -32,5 +33,26 @@ describe('Ecommerce App', async () => {
       await $('.alert-danger').getText()
     );
     await expect($("p")).toHaveTextContaining("username is rahulshettyacademy and Password is learning");
+  });
+  it('Login success page title', async ()=> {
+    // open page
+    await browser.url(
+      'https://www.rahulshettyacademy.com/loginpagePractise/'
+    );
+    // input username
+    await $("input[name='username']").setValue(
+      'rahulshettyacademy'
+    );
+    // input password
+    const password = $("//input[@id='password']");
+    await password.setValue('learning');
+    await $('#signInBtn').click();
+    // page loads
+    // wait until checkout button is displayed
+    // dom traversal
+    await $(".btn-primary").waitForExist();
+    await expect(browser).toHaveUrlContaining('shop');
+    await expect(browser).toHaveTitle('ProtoCommerce');
+
   });
 });
