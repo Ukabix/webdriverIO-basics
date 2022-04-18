@@ -3,7 +3,7 @@ const expectChai = require('chai').expect;
 describe('UI Controls Test Suite', async () => {
   // xit disables test
   
-  it('UI Controls', async ()=> {
+  xit('UI Controls', async ()=> {
     // open page
     await browser.url(
       'https://www.rahulshettyacademy.com/loginpagePractise/'
@@ -40,7 +40,7 @@ describe('UI Controls Test Suite', async () => {
     await $$(".customradio")[0].$("span").click();
     await expect(waitForModal).not.toBeDisplayed();
 
-    //// DROPDOWNS
+    //// DROPDOWNS - static
     /// validate static dropdowns
     // get element
     const dropDown = await $("select.form-control");
@@ -56,10 +56,31 @@ describe('UI Controls Test Suite', async () => {
     // CHAI ASSERTIONS
     expectChai(await dropDown.getValue()).to.equal("stud");
 
+  });
 
+  it('Dynamic dropdowns', async ()=> {
+
+    // open webpage
+    await browser.url("https://rahulshettyacademy.com/AutomationPractice/");
+
+    // get element and autocomplete
+    await $('#autocomplete').setValue('ind');
+    // wait for data to load properly
     await browser.pause(3000);
-
-
+    // store options in an array
+    // !!!! [class='value'/div] - FOR XPATH
+    let items = await $$("[class='ui-menu-item'] div");
+    // iterate through the array
+    for (var i = 0; i < await items.length; i++) {
+      // console.log(await items[i].getText());
+      // find the text and click that item
+      if (await items[i].getText() === 'India') {
+        await items[i].click();
+        await browser.pause(3000);
+      }
+    };
 
   });
+
+
 });
