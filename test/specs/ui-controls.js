@@ -1,3 +1,5 @@
+const expectChai = require('chai').expect;
+
 describe('UI Controls Test Suite', async () => {
   // xit disables test
   
@@ -50,7 +52,9 @@ describe('UI Controls Test Suite', async () => {
     await dropDown.selectByIndex(0);
     // check the value
     await dropDown.getValue();
-
+    
+    // CHAI ASSERTIONS
+    expectChai(await dropDown.getValue()).to.equal("stud");
 
 
     await browser.pause(3000);
