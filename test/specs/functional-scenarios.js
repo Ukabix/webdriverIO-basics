@@ -42,7 +42,7 @@ describe('Functional Scenarios Test Suite', async () => {
   });
 
   // TABLES - validate sorting
-  it('table sorting validation', async () => {
+  xit('table sorting validation', async () => {
     // open page
     await browser.url(
       'https://rahulshettyacademy.com/seleniumPractise/#/offers'
@@ -63,13 +63,24 @@ describe('Functional Scenarios Test Suite', async () => {
   });
 
   //// validate table filtering
-  it('table sorting validation', async () => {
+  it('table filter validation', async () => {
     // open page
     await browser.url(
       'https://rahulshettyacademy.com/seleniumPractise/#/offers'
     );
     // go fullscreen
     await browser.fullscreenWindow();
+    // get element by tagname
+    const input1 = await $("input[type='search']");
+    // query for tomato
+    await input1.setValue("tomato");
+    // collect elements
+    const arrayLocators1 = await $$("tr td:nth-child(1)"); // should be 1
+    // assert there is one row
+    await expect(arrayLocators1).toBeElementsArrayOfSize({eq:1});
+    // assert text === 'tomato'
+    await expect(arrayLocators1[0]).toHaveText("Tomato");
+
 
     });
 });
