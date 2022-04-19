@@ -54,7 +54,7 @@ describe('UI Controls Test Suite', async () => {
     await dropDown.getValue();
     
     // CHAI ASSERTIONS
-    expectChai(await dropDown.getValue()).to.equal("stud");
+    expectChai(await dropDown.getValue()).to.be.equal("stud");
 
   });
 
@@ -93,8 +93,8 @@ describe('UI Controls Test Suite', async () => {
     // console.log(await checkboxElements[1].isSelected());
     // console.log(await checkboxElements[2].isSelected());
     // assertions
-    expectChai(await checkboxElements[1].isSelected()).to.equal(true);
-    expectChai(await checkboxElements[2].isSelected()).not.to.equal(true);
+    expectChai(await checkboxElements[1].isSelected()).to.be.true;
+    expectChai(await checkboxElements[2].isSelected()).not.to.be.true;
     // SCREENSHOT - take imperatively
     browser.saveScreenshot("validateCheckboxes.png");
   });
