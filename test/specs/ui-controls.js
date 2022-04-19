@@ -58,7 +58,7 @@ describe('UI Controls Test Suite', async () => {
 
   });
 
-  it('Dynamic dropdowns', async ()=> {
+  xit('Dynamic dropdowns', async ()=> {
 
     // open webpage
     await browser.url("https://rahulshettyacademy.com/AutomationPractice/");
@@ -77,10 +77,25 @@ describe('UI Controls Test Suite', async () => {
       if (await items[i].getText() === 'India') {
         await items[i].click();
         await browser.pause(3000);
-      }
+      };
     };
-
   });
 
-
+  //// CHECKBOXES
+  it('Checkbox identification', async () => {
+    // get page
+    await browser.url("https://rahulshettyacademy.com/AutomationPractice/");
+    // get elements array
+    const checkboxElements = await $$("input[type='checkbox']");
+    // select 2nd
+    await checkboxElements[1].click();
+    // check if 2nd is selected and 3rd is not
+    // console.log(await checkboxElements[1].isSelected());
+    // console.log(await checkboxElements[2].isSelected());
+    // assertions
+    expectChai(await checkboxElements[1].isSelected()).to.equal(true);
+    expectChai(await checkboxElements[2].isSelected()).not.to.equal(true);
+    // SCREENSHOT - take imperatively
+    browser.saveScreenshot("validateCheckboxes.png");
+  });
 });
