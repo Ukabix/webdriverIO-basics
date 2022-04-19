@@ -41,7 +41,7 @@ describe('Functional Scenarios Test Suite', async () => {
     await browser.pause(3000);
   });
 
-  //// TABLES - validate sorting
+  // TABLES - validate sorting
   it('table sorting validation', async () => {
     // open page
     await browser.url(
@@ -53,7 +53,7 @@ describe('Functional Scenarios Test Suite', async () => {
     await $("tr th:nth-child(1)").click();
     // after 1 click - retrieve list of names to array1
     const arrayLocators = await $$("tr td:nth-child(1)");
-    const arrayNames = await arrayLocators.map(async item => await item.getText());
+    const arrayNames = await Promise.all(arrayLocators.map(async item => await item.getText()));
     const array1 = arrayNames.slice();
     // sort array as array2
     const array2 = array1.sort();
@@ -61,4 +61,15 @@ describe('Functional Scenarios Test Suite', async () => {
     expectChai(array1).to.equal(array2);
 
   });
+
+  //// validate table filtering
+  it('table sorting validation', async () => {
+    // open page
+    await browser.url(
+      'https://rahulshettyacademy.com/seleniumPractise/#/offers'
+    );
+    // go fullscreen
+    await browser.fullscreenWindow();
+
+    });
 });
