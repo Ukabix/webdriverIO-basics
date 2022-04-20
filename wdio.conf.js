@@ -25,7 +25,8 @@ exports.config = {
         // './test/specs/**/first-test.js',
         // './test/specs/**/ui-controls.js',
         // './test/specs/**/functional-scenarios.js',
-        './test/specs/**/windows-frames.js'
+        // './test/specs/**/windows-frames.js',
+        './test/specs/**/e2eCommerce.js'
     ],
     // Patterns to exclude.
     exclude: [
