@@ -1,5 +1,7 @@
 describe('Ecommerce app', async () => {
   it('End to end test', async () => {
+    // select products
+    const products = ['iphone X', 'Blackberry'];
     // open page
     await browser.url(
       'https://www.rahulshettyacademy.com/loginpagePractise/'
@@ -19,7 +21,12 @@ describe('Ecommerce app', async () => {
     // wait until checkout button is displayed || *= wildcard / recommended to use only on a links
     await $(
       '.nav-link.btn.btn-primary'
-    ).waitForExist({ timeout: 180000, reverse: false, timeoutMsg: "", interval: 5000 });
+    ).waitForExist({
+      timeout: 180000,
+      reverse: false,
+      timeoutMsg: '',
+      interval: 5000,
+    });
     // logged in
 
     // grab divs with products - custom locator tagName[class='full classname']
@@ -34,7 +41,15 @@ describe('Ecommerce app', async () => {
     ) {
       // get titles via DOM traversal to reach: div[class='card h-100'] div h4 a - chain locators
       const card = await cards[i].$('div h4 a');
-      console.log(await card.getText());
-    }
+      // choose products via if statement
+      if (
+        products.includes(await card.getText())
+      ) {
+        //// click that card
+        // get locator for add btn
+        const btn = await cards[i].$('.card-footer button');
+        await btn.click();
+      };
+    };
   });
 });
