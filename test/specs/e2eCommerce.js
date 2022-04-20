@@ -19,9 +19,8 @@ describe('Ecommerce app', async () => {
     // page loads
 
     // wait until checkout button is displayed || *= wildcard / recommended to use only on a links
-    await $(
-      '.nav-link.btn.btn-primary'
-    ).waitForExist({
+    const checkout = await $('.nav-link.btn.btn-primary');
+    await checkout.waitForExist({
       timeout: 180000,
       reverse: false,
       timeoutMsg: '',
@@ -51,5 +50,8 @@ describe('Ecommerce app', async () => {
         await btn.click();
       };
     };
+    // click checkout
+    await checkout.click();
+    await browser.pause(3000);
   });
 });
