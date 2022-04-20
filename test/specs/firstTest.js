@@ -2,7 +2,7 @@ describe('Ecommerce Application',async()=>
 {
 
 
-    it('Login Fail page title-Smoke',async()=>
+    xit('Login Fail page title-Smoke',async()=>
 {
 //webdriverio Async  (Sync)
 
@@ -26,9 +26,9 @@ describe('Ecommerce Application',async()=>
 
 })
 
-it('Login Fail page title Smoke',async()=>
+xit('Login Fail page title Smoke',async()=>
 {
-    await browser.url("/loginpagePractise/")
+    await browser.url("https://www.rahulshettyacademy.com/loginpagePractise/")
     console.log(await browser.getTitle())
 
     await expect(browser).toHaveTitleContaining("Rahul Shetty Academy")
@@ -38,7 +38,7 @@ it('Login Fail page title Smoke',async()=>
 
 it('Login Success page title',async()=>
 {
-    browser.url("/loginpagePractise/")
+    browser.url("https://www.rahulshettyacademy.com/loginpagePractise/")
     await $("input[name='username']").setValue("rahulshettyacademy")
     const password = $("//input[@type='password']")
     await password.setValue("learning")

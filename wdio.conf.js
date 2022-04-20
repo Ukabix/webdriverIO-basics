@@ -26,7 +26,8 @@ exports.config = {
         // './test/specs/**/ui-controls.js',
         // './test/specs/**/functional-scenarios.js',
         // './test/specs/**/windows-frames.js',
-        './test/specs/**/e2eCommerce.js'
+        './test/specs/**/e2eCommerce.js',
+        // './test/specs/**/firstTest.js'
     ],
     // Patterns to exclude.
     exclude: [
@@ -204,8 +205,9 @@ exports.config = {
      * @param {Array.<String>} specs        List of spec file paths that are to be run
      * @param {Object}         browser      instance of created browser/device session
      */
-    // before: function (capabilities, specs) {
-    // },
+    //  before: function (capabilities, specs) {
+    //     browser.setTimeout({ 'pageLoad': 300000 })
+    //  },
     /**
      * Runs before a WebdriverIO command gets executed.
      * @param {String} commandName hook command name

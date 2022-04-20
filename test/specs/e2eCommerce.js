@@ -16,9 +16,10 @@ describe('Ecommerce app', async () => {
     await $('#signInBtn').click();
     // page loads
 
-
     // wait until checkout button is displayed || *= wildcard / recommended to use only on a links
-    await $('*=Checkout').waitForExist();
+    await $(
+      '.nav-link.btn.btn-primary'
+    ).waitForExist({ timeout: 180000, reverse: false, timeoutMsg: "", interval: 5000 });
     // logged in
 
     // grab divs with products - custom locator tagName[class='full classname']
