@@ -1,3 +1,5 @@
+const expectChai = require('chai').expect;
+
 describe('Ecommerce app', async () => {
   it('End to end test', async () => {
     // select products
@@ -75,8 +77,16 @@ describe('Ecommerce app', async () => {
         )
       )
     ).reduce((acc, price) => acc + price, 0);
-    // returns trimmed int array || arrayEach: [("$. 13000" -> ["$.", " 13000" -> " 13000" -> "13000" -> 13000), 5000] || reduce: 0+=13000 -> 13000+=5000 -> 18000
-    console.log(productPricesSum);
+    // returns trimmed int array || arrayEach: [("$. 10000" -> ["$.", " 10000" -> " 10000" -> "10000" -> 10000), 5000] || reduce: 0+=10000 -> 10000+=5000 -> 15000
+    // console.log(productPricesSum);
+    // get cart sum
+    // get element
+    const cartSumText = await $("h3 strong").getText();
+    // handle text to get int
+    const cartSum = await parseInt(cartSumText.split('.')[1].trim());
+    // check if cart sum === productPricesSum
+    await expectChai(cartSum).not.to.eql(productPricesSum);
+
     await browser.pause(3000);
   });
 });
