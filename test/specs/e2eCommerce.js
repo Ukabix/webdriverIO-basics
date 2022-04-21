@@ -62,15 +62,21 @@ describe('Ecommerce app', async () => {
     const productPrices = await $$(
       'tr td:nth-child(4) strong'
     ); // array
-    // filter to get only numbers
-    const productPricesSum = await productPrices.map((productPrice) => {
-      parseInt(
-        productPrice
-          .getText()
-          .split('.')[1]
-          .trim()
-      ).reduce((acc, price) => acc + price, 0); // returns trimmed int array || arrayEach: [("$. 13000" -> ["$.", " 13000" -> " 13000" -> "13000" -> 13000), 5000] || reduce: 0 -> 13000 -> 18000
-    });
+    // filter to get only numbers as sum
+    const productPricesSum = (
+      await Promise.all(
+        await productPrices.map(
+          async (productPrice) =>
+            parseInt(
+              (await productPrice.getText())
+                .split('.')[1]
+                .trim()
+            )
+        )
+      )
+    ).reduce((acc, price) => acc + price, 0);
+    // returns trimmed int array || arrayEach: [("$. 13000" -> ["$.", " 13000" -> " 13000" -> "13000" -> 13000), 5000] || reduce: 0+=13000 -> 13000+=5000 -> 18000
+    console.log(productPricesSum);
     await browser.pause(3000);
   });
 });
