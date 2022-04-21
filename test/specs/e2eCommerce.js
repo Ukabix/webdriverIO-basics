@@ -19,7 +19,9 @@ describe('Ecommerce app', async () => {
     // page loads
 
     // wait until checkout button is displayed || *= wildcard / recommended to use only on a links
-    const checkout = await $('.nav-link.btn.btn-primary');
+    const checkout = await $(
+      '.nav-link.btn.btn-primary'
+    );
     await checkout.waitForExist({
       timeout: 180000,
       reverse: false,
@@ -46,12 +48,29 @@ describe('Ecommerce app', async () => {
       ) {
         //// click that card
         // get locator for add btn
-        const btn = await cards[i].$('.card-footer button');
+        const btn = await cards[i].$(
+          '.card-footer button'
+        );
         await btn.click();
-      };
-    };
+      }
+    }
     // click checkout
     await checkout.click();
+
+    //// validate sum of cart
+    // get element prices
+    const productPrices = await $$(
+      'tr td:nth-child(4) strong'
+    ); // array
+    // filter to get only numbers
+    const productPricesSum = await productPrices.map((productPrice) => {
+      parseInt(
+        productPrice
+          .getText()
+          .split('.')[1]
+          .trim()
+      ).reduce((acc, price) => acc + price, 0); // returns trimmed int array || arrayEach: [("$. 13000" -> ["$.", " 13000" -> " 13000" -> "13000" -> 13000), 5000] || reduce: 0 -> 13000 -> 18000
+    });
     await browser.pause(3000);
   });
 });
