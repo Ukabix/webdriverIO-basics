@@ -2,7 +2,7 @@ const loginPage = require ("../pageobjects/login-page");
 
 describe("Ecommerce App", async () => {
   // xit disables test
-  xit("Login page - fail to sign in with invalid credentials", async () => {
+  it("Login page - fail to sign in with invalid credentials", async () => {
     // open browser
     await browser.url(
       "https://www.rahulshettyacademy.com/loginpagePractise/"
@@ -10,13 +10,15 @@ describe("Ecommerce App", async () => {
     // assert page is open
     await expect(browser).toHaveTitleContaining("Rahul");
     // execute sign in
-    loginPage.login("rahulshettyacademy", "wrongpass");
-    
-
-
+    await loginPage.login("rahulshettyacademy", "wrongpass");
+    // check alert
+    await console.log(
+      await loginPage.alert.getText()
+    );
+    // wait for site render
     await browser.waitUntil(
       async () =>
-        (await $('#signInBtn').getAttribute(
+        (await loginPage.btnSignIn.getAttribute(
           'value'
         )) === 'Sign In',
       {
@@ -24,12 +26,14 @@ describe("Ecommerce App", async () => {
         timeoutMsg: 'Error msg is not showing up',
       }
     );
+    // check alert presence
     await console.log(
-      await $('.alert-danger').getText()
+      await loginPage.alert.getText()
     );
-    await expect($("p")).toHaveTextContaining("username is rahulshettyacademy and Password is learning");
+    // assert that browser is still on login page
+    await expect(await loginPage.paragraphTextInfo).toHaveTextContaining("username is rahulshettyacademy and Password is learning");
   });
-  it('Login success page title', async ()=> {
+  xit('Login success page title', async ()=> {
     // open page
     await browser.url(
       'https://www.rahulshettyacademy.com/loginpagePractise/'

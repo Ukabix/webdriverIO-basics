@@ -21,6 +21,10 @@ class LoginPage {
     return $('#signInBtn');
   };
 
+  get paragraphTextInfo() {
+    return $("p")
+  };
+
   async login(username, password) {
     await this.inputUsername.setValue(username);
     await this.inputPassword.setValue(password);
