@@ -12,7 +12,7 @@ class CheckoutPage {
 
   get btnForward() {
     return $('.btn-success');
-  };
+  }
 
   async productPricesTotal() {
     // returns trimmed int array || arrayEach: [("$. 10000" -> ["$.", " 10000" -> " 10000" -> "10000" -> 10000), 5000] || reduce: 0+=10000 -> 10000+=5000 -> 15000

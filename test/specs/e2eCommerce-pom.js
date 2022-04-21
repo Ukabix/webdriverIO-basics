@@ -4,6 +4,7 @@ const expectChai = require('chai').expect;
 const loginPage = require('../pageobjects/login-page');
 const shopPage = require('../pageobjects/shop-page');
 const checkoutPage = require('../pageobjects/checkout-page');
+const deliveryPage = require('../pageobjects/delivery-page');
 
 describe('Ecommerce app', async () => {
   it('End to end test', async () => {
@@ -66,22 +67,26 @@ describe('Ecommerce app', async () => {
     // move on to next step - press checkout btn
     await checkoutPage.btnForward.click();
 
-    //// land on new page
-    // get element
-    await $('#country').setValue('pol');
-    // wait for loader animation to dissapear || exist negation
-    await $('.lds-ellipsis').waitForExist({
+    // page loads - now on delivery page
+    // assert page has loaded - TODO
+
+    // call queryPol
+    await deliveryPage.queryPol();
+
+    // wait for loader animation to dissapear === exist negation
+    await deliveryPage.animElipsis.waitForExist({
       reverse: true,
     });
-    // get a element
-    await $('=Poland').click();
-    // press purchase btn
-    await $('input[type=submit]').click();
-    // get sucess alert
-    await expect(
-      $('.alert-success')
-    ).toHaveTextContaining('Success');
 
-    await browser.pause(3000);
+    // click queried dropdown element
+    await deliveryPage.anchorListItem.click();
+
+    // press submit btn
+    await deliveryPage.btnSubmit.click();
+
+    // assert success alert is visible
+    await expect(
+      deliveryPage.alertSubmitSuccess
+    ).toHaveTextContaining('Success');
   });
 });
