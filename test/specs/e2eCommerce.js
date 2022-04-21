@@ -85,7 +85,21 @@ describe('Ecommerce app', async () => {
     // handle text to get int
     const cartSum = await parseInt(cartSumText.split('.')[1].trim());
     // check if cart sum === productPricesSum
-    await expectChai(cartSum).not.to.eql(productPricesSum);
+    await expectChai(cartSum).to.eql(productPricesSum);
+
+    // move on to next step - press checkout btn
+    await $(".btn-success").click(); // land on new page
+    // get element
+    await $('#country').setValue("pol");
+    // wait for loader animation to dissapear || exist negation
+    await $(".lds-ellipsis").waitForExist({reverse:true});
+    // get a element
+    await $('=Poland').click();
+    // press purchase btn
+    await $("input[type=submit]").click();
+    // get sucess alert
+    await expect($('.alert-success')).toHaveTextContaining("Success");
+
 
     await browser.pause(3000);
   });
