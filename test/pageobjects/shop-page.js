@@ -5,7 +5,7 @@ class ShopPage {
   // gets bind to object.property
   get btnCheckout() {
     return $(
-      '.nav-link.btn.btn-primary'
+      ".nav-link.btn.btn-primary"
     );
   };
 
@@ -23,7 +23,7 @@ class ShopPage {
       i++
     ) {
       // get titles via DOM traversal to reach: div[class='card h-100'] div h4 a - chain locators
-      const card = await this.elementsCards[i].$('div h4 a');
+      const card = await this.elementsCards[i].$("div h4 a");
       // filter products via if statement, if true -> click that card
       if (
         products.includes(await card.getText())
@@ -31,7 +31,7 @@ class ShopPage {
         //// click that card
         // get locator for add btn
         const btn = await this.elementsCards[i].$(
-          '.card-footer button'
+          ".card-footer button"
         );
         await btn.click();
       };
