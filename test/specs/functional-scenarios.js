@@ -42,7 +42,7 @@ describe('Functional Scenarios Test Suite', async () => {
   });
 
   // TABLES - validate sorting
-  xit('table sorting validation', async () => {
+  xit('table sorting validation -Smoke', async () => {
     // open page
     await browser.url(
       'https://rahulshettyacademy.com/seleniumPractise/#/offers'

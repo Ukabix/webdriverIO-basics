@@ -58,7 +58,7 @@ describe('UI Controls Test Suite', async () => {
 
   });
 
-  xit('Dynamic dropdowns', async ()=> {
+  xit('Dynamic dropdowns -Smoke', async ()=> {
 
     // open webpage
     await browser.url("https://rahulshettyacademy.com/AutomationPractice/");

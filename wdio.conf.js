@@ -21,7 +21,8 @@ exports.config = {
     // will be called from there.
     //
     specs: [
-        // './test/specs/**/*.js',
+        // for keyword filter use --mochaOpts.grep KEYWORD as run param
+        './test/specs/**/*.js',
         // './test/specs/**/first-test.js',
         // './test/specs/**/ui-controls.js',
         // './test/specs/**/functional-scenarios.js',
@@ -29,7 +30,7 @@ exports.config = {
         // './test/specs/**/e2eCommerce.js',
         // './test/specs/**/firstTest.js',
         // './test/specs/**/first-test-pom.js',
-        './test/specs/**/e2eCommerce-pom.js',
+        // './test/specs/**/e2eCommerce-pom.js',
     ],
     // Patterns to exclude.
     exclude: [
