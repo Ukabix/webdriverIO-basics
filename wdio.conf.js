@@ -63,10 +63,24 @@ exports.config = {
         // grid with only 5 firefox instances available you can make sure that not more than
         // 5 instances get started at a time.
         maxInstances: 5,
-        //
+
         // browserName: 'MicrosoftEdge',
         // browserName: 'firefox',
         browserName: 'chrome',
+        'goog:chromeOptions': {
+            // !!! headless
+            // to run chrome headless the following flags are required
+            // (see https://developers.google.com/web/updates/2017/04/headless-chrome)
+            args: ['--headless', '--disable-gpu'],
+            },
+            //
+            // Parameter to ignore some or all default flags
+            // - if value is true: ignore all DevTools 'default flags' and Puppeteer 'default arguments'
+            // - if value is an array: DevTools filters given default arguments
+            // 'wdio:devtoolsOptions': {
+            //    ignoreDefaultArgs: true,
+            //    ignoreDefaultArgs: ['--disable-sync', '--disable-extensions'],
+            // }
         acceptInsecureCerts: true
         // If outputDir is provided WebdriverIO can capture driver session logs
         // it is possible to configure which logTypes to include/exclude.
