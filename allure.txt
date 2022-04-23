@@ -1,0 +1,2 @@
+allure generate [allure_output_dir] && allure open
+allure generate allure-results && allure open

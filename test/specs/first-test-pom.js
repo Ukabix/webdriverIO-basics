@@ -7,7 +7,7 @@ describe("Ecommerce App", async function () {
     this.retries(2);
     // open browser
     await browser.url(
-      "https://www.rahulshettyacademy.com/loginpagePractise/"
+      "https://www.dsarahulshettyacademy.com/loginpagePractise/"
     );
     // assert page is open
     await expect(browser).toHaveTitleContaining("Rahul");

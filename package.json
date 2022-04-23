@@ -17,7 +17,9 @@
         "wdio": "wdio run wdio.conf.js",
         "systemTests": "npx wdio run wdio.conf.js --suite systemTests",
         "QARegression": "npm wdio run wdio.conf.js",
-        "UATRegression": "npx wdio run wdio.uat.conf.js"
+        "UATRegression": "npx wdio run wdio.uat.conf.js",
+        "GenerateReport": "allure generate allure-results && allure open",
+        "GenerateReportClean": "allure generate --clean allure-results && allure open"
     },
     "dependencies": {
         "chai": "^4.3.6"
