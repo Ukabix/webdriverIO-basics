@@ -6,4 +6,5 @@
 --spec test/specName.js
 // run specific spec files
 --spec test/specName.js, test/anotherSpec.js
-
+// run scripts
+npm run systemTests
