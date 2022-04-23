@@ -1,0 +1,9 @@
+// run tests filtered by keyword
+--mochaOpts.grep KEYWORD
+// run tests filteredy by suites
+--suite suiteName
+// run specific spec file 
+--spec test/specName.js
+// run specific spec files
+--spec test/specName.js, test/anotherSpec.js
+
