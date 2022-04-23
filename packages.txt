@@ -1,0 +1,3 @@
+npm install webdriverio
+npm install @wdio/allure-reporter --save-dev
+npm install @wdio/selenium-standalone-service

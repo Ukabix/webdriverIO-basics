@@ -32,7 +32,7 @@ exports.config = {
   },
   specs: [
     // for keyword filter use --mochaOpts.grep KEYWORD as run param
-    './test/specs/**/*.js',
+    // './test/specs/**/*.js',
     // './test/specs/**/first-test.js',
     // './test/specs/**/ui-controls.js',
     // './test/specs/**/functional-scenarios.js',
@@ -40,7 +40,7 @@ exports.config = {
     // './test/specs/**/e2eCommerce.js',
     // './test/specs/**/firstTest.js',
     // './test/specs/**/first-test-pom.js',
-    // './test/specs/**/e2eCommerce-pom.js',
+    './test/specs/**/e2eCommerce-pom.js',
   ],
   // Patterns to exclude.
   exclude: [
@@ -78,12 +78,12 @@ exports.config = {
       // browserName: 'MicrosoftEdge',
       // browserName: 'firefox',
       browserName: 'chrome',
-      'goog:chromeOptions': {
-        // !!! headless
-        // to run chrome headless the following flags are required
-        // (see https://developers.google.com/web/updates/2017/04/headless-chrome)
-        args: ['--headless', '--disable-gpu'],
-      },
+      // 'goog:chromeOptions': {
+      //   // !!! headless
+      //   // to run chrome headless the following flags are required
+      //   // (see https://developers.google.com/web/updates/2017/04/headless-chrome)
+      //   args: ['--headless', '--disable-gpu'],
+      // },
       //
       // Parameter to ignore some or all default flags
       // - if value is true: ignore all DevTools 'default flags' and Puppeteer 'default arguments'
@@ -170,7 +170,14 @@ exports.config = {
   // Test reporter for stdout.
   // The only one supported by default is 'dot'
   // see also: https://webdriver.io/docs/dot-reporter
-  reporters: ['spec'],
+  // reporters: ['spec'],
+
+  // default -> creates xmls
+  reporters: [['allure', {
+    outputDir: 'allure-results',
+    // disableWebdriverStepsReporting: true,
+    disableWebdriverScreenshotsReporting: false,
+}]],
 
   //
   // Options to be passed to Mocha.
@@ -274,8 +281,11 @@ exports.config = {
    * @param {Boolean} result.passed    true if test has passed, otherwise false
    * @param {Object}  result.retries   informations to spec related retries, e.g. `{ attempts: 0, limit: 0 }`
    */
-  // afterTest: function(test, context, { error, result, duration, passed, retries }) {
-  // },
+  afterTest: function(test, context, { error, result, duration, passed, retries }) {
+    if (error) {
+      browser.takeScreenshot();
+    }
+  },
 
   /**
    * Hook that gets executed after the suite has ended
