@@ -1,8 +1,10 @@
 const loginPage = require ("../pageobjects/login-page");
 
-describe("Ecommerce App", async () => {
+describe("Ecommerce App", async function () {
+
   // xit disables test
   it("Login page - fail to sign in with invalid credentials -Smoke", async () => {
+    this.retries(2);
     // open browser
     await browser.url(
       "https://www.rahulshettyacademy.com/loginpagePractise/"
